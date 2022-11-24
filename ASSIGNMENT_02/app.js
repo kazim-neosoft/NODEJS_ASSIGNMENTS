@@ -34,21 +34,13 @@ app.post("/submitdata",(req,res)=>{
     const fullName=req.body.name;
     const email=req.body.email;
     const phoneNumber=req.body.phnNumber;
-    // Uncomment below code to write data in pug
-//     const data=`
-// tr
-//  td ${fullName}
-//  td ${email}
-//  td ${phoneNumber}
-//  `
-const data=`
-<tr>
-    <td>${fullName}</td>
-    <td>${email}</td>
-    <td>${phoneNumber}</td>
-</tr>
-`
-    
+    const data=`
+tr
+ td ${fullName}
+ td ${email}
+ td ${phoneNumber}
+ `
+
     if(fs.existsSync('./contactdata/details.pug')){
         fs.appendFileSync('./contactdata/details.pug',data.toString(),"utf8");
         
@@ -59,10 +51,7 @@ const data=`
 })
 
 app.get("/details",(req,res)=>{
-    
-        const data = fs.readFileSync('./contactdata/details.pug');
-        console.log("Data>>>>", data)
-        res.render('contactDetails',{data:data})
+    res.render("contactDetails")
 })
 
 app.use("*",(req,res)=>{
