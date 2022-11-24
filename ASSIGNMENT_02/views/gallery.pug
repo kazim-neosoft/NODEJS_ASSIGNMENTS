@@ -1,0 +1,119 @@
+doctype html
+head
+  // Required meta tags
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  // Bootstrap CSS
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous')
+  title Hello, world!
+include ./partials/header.pug
+
+#carouselMultiItemExample.carousel.slide.carousel-dark.text-center(data-mdb-ride='carousel')
+  // Controls
+  .d-flex.justify-content-center.mb-4
+    button.carousel-control-prev.position-relative(type='button' data-mdb-target='#carouselMultiItemExample' data-mdb-slide='prev')
+      span.carousel-control-prev-icon(aria-hidden='true')
+      span.visually-hidden Previous
+    button.carousel-control-next.position-relative(type='button' data-mdb-target='#carouselMultiItemExample' data-mdb-slide='next')
+      span.carousel-control-next-icon(aria-hidden='true')
+      span.visually-hidden Next
+  // Inner
+  .carousel-inner.py-4
+    // Single item
+    .carousel-item.active
+      .container
+        .row
+          .col-lg-4
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/181.webp' alt='Waterfall')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+          .col-lg-4.d-none.d-lg-block
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp' alt='Sunset Over the Sea')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+          .col-lg-4.d-none.d-lg-block
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/183.webp' alt='Sunset over the Sea')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+    //- // Single item
+    .carousel-item
+      .container
+        .row
+          .col-lg-4.col-md-12
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp' alt='Fissure in Sandstone')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+          .col-lg-4.d-none.d-lg-block
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/185.webp' alt='Storm Clouds')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+          .col-lg-4.d-none.d-lg-block
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/186.webp' alt='Hot Air Balloons')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+    //-  Single item
+    .carousel-item
+      .container
+        .row
+          .col-lg-4.col-md-12.mb-4.mb-lg-0
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/187.webp' alt='Peaks Against the Starry Sky')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+          .col-lg-4.mb-4.mb-lg-0.d-none.d-lg-block
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/188.webp' alt='Bridge Over Water')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+          .col-lg-4.mb-4.mb-lg-0.d-none.d-lg-block
+            .card
+              img.card-img-top(src='https://mdbcdn.b-cdn.net/img/new/standard/nature/189.webp' alt='Purbeck Heritage Coast')
+              .card-body
+                h5.card-title Card title
+                p.card-text
+                  | Some quick example text to build on the card title and make up the bulk
+                  | of the card&apos;s content.
+                a.btn.btn-primary(href='#!') Button
+include ./partials/footer.pug
+ 
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
+
+  
