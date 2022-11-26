@@ -1,0 +1,49 @@
+{{> navbar}}
+ <div class="container p-5">
+
+        <h2 class="display-6 text-center">Registration Form</h2>
+
+        <form method="POST" action="/user/postData">
+            {{#if errMsg}}
+            <div class="alert alert-danger">{{errMsg}}</div>
+            {{/if}}
+
+            {{#if succsMsg}}
+            <div class="alert alert-success">{{succsMsg}}</div>
+            {{/if}}
+
+            <div class="form-floating mb-3">
+                <input type="text" name="fullname" class="form-control" id="floatingInput" placeholder="Name">
+                <label for="floatingInput">Full Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" name="emailId" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            
+
+            <div class="form-floating mb-3">
+                <input type="number" name="contactNum" class="form-control" id="floatingInput" placeholder="984472634">
+                <label for="floatingInput">Contact Number</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" name="cityName" class="form-control" id="floatingInput" placeholder="Mumbai">
+                <label for="floatingInput">City</label>
+              </div>
+
+
+            <div class="form-group mb-3">
+                <input type="submit" value="Sign Up" class="btn btn-success">
+            </div>
+
+        </form>
+    </div>
+    
+{{> footer}}

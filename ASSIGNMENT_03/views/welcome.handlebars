@@ -1,0 +1,50 @@
+{{> navbar}}
+{{!-- Rendering Registration in Welcomepage --}}
+
+{{#if registrationToken}}
+<div class="container mt-3">
+    <h3 class="text-center">Wooh!! Registeration Successfull</h3>
+    <div class="alert alert-info">
+        <strong>Welcome <i>{{registrationToken}}</i></strong> You should <a href="/user/login" class="alert-link">Login</a>.
+    </div>
+</div>
+{{/if}}
+
+{{!-- -------------------------------------------------------------------------}}
+
+{{!-- Rendering login in Welcomepage --}}
+
+{{#if email}}
+{{#if username}}
+<div class="container">
+    <h2 class="m-4 text-center">Welcome {{username}}</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-info">
+                <td>{{username}}</td>
+                <td>{{email}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{{/if}}
+{{/if}}
+
+{{!-- -------------------------------------------------------------------------}}
+
+{{!-- Rendering Invalid Params request in Welcomepage --}}
+{{#if invalidToken}}
+<h2 class="text-center h2 alert-info">{{invalidToken}}</h2>
+<div class="alert alert-danger">
+    <strong>{{invalidToken}}</strong> Don't try to access through invalid params
+</div>
+{{/if}}
+
+{{> footer}}
