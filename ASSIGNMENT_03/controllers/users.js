@@ -36,14 +36,14 @@ const login=((req,res)=>{
     if(fs.existsSync(`./userData/${emailId}.txt`)){
         // storing a email.txt value in credentials variable in string format
         let credientials=fs.readFileSync(`./userData/${emailId}.txt`).toString();
-        // converting comma seperated string to arrayString
-        let credArray=credientials.split(',');
+        // converting comma seperated string to arrayString and accesing password value at index 2
+        let savedPassword=credientials.split(',')[2];
 
         // check for password
-        if(credArray[2]==password){
+        if(password==savedPassword){
             // succesPassword
             // if password match passing an email and username through param
-            res.redirect("/user/welcome/"+`${emailId}/${credArray[0]}`);
+            res.redirect("/user/welcome/"+`${emailId}/${credientials.split(',')[0]}`);
         }
         else{
             // if password doesn't match rendering a error message 
