@@ -27,10 +27,10 @@ const registration=((req,res)=>{
 });
 
 // login function
-const login=((req,res)=>{
+const login=(async (req,res)=>{
 
     // getting login form field value
-    const {emailId,password}=req.body;
+    const {emailId,password}=await req.body;
 
     // check if user exist or not
     if(fs.existsSync(`./userData/${emailId}.txt`)){
@@ -43,16 +43,16 @@ const login=((req,res)=>{
         if(password==savedPassword){
             // succesPassword
             // if password match passing an email and username through param
-            res.redirect("/user/welcome/"+`${emailId}/${credientials.split(',')[0]}`);
+            return await res.redirect("/user/welcome/"+`${emailId}/${credientials.split(',')[0]}`);
         }
         else{
             // if password doesn't match rendering a error message 
-            res.render("login",{errPwdMsg:"Incorrect Password"})
+            return await res.render("login",{errPwdMsg:"Incorrect Password"})
         }
     }
     else{
         // Emailid Not Found
-        res.render("login",{errEmlMsg:"Email Not Found"})
+        return res.render("login",{errEmlMsg:"Email Not Found"})
     }
 });
 

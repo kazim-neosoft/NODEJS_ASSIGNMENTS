@@ -23,19 +23,19 @@ router.get("/welcome/:emailid/:username?",(req,res)=>{
     if(emailid && username==undefined){
     if(fs.existsSync(`./userData/${emailid}.txt`)){
         // fs.exist for more security because user can acces this pages with params i.e. this extra check apply
-        res.render("welcome",{registrationToken:emailid})
+        return res.render("welcome",{registrationToken:emailid})
        }
     //rendering Invalid access
-       res.render("welcome",{invalidToken:"Invalid Access"})
+      return res.render("welcome",{invalidToken:"Invalid Access"})
 
     }else{
         // handler for login info
         if(fs.existsSync(`./userData/${emailid}.txt`)){
             // fs.exist for more security because user can acces this pages with params i.e. this extra check apply
-        res.render("welcome",{email:emailid,username:username})
+        return res.render("welcome",{email:emailid,username:username})
         }
         //rendering Invalid access
-        res.render("welcome",{invalidToken:"Invalid Access"})
+        return res.render("welcome",{invalidToken:"Invalid Access"})
     }
 });
 // router for POST method for registration
