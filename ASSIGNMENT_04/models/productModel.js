@@ -22,6 +22,6 @@ const productSchema=mongoose.Schema({
         type:String,
         required:true,
     }
-},{timestamps:true});
+},{timestamps:true});//timestamps with  createdAt and updatedAt  field in schema
 
-module.exports=mongoose.model("products",productSchema);
+module.exports=mongoose.model("products",productSchema);//making a schema model
