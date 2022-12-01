@@ -11,6 +11,9 @@
     <title>Hello, world!</title>
   </head>
   <body>
+
+    <%- include('./partials/navbar.ejs') %>
+
     <div class="container p-5">
 
         <h2 class="display-6 text-center">UPDATE PRODUCT PAGE</h2>
@@ -23,22 +26,22 @@
             </div>
     
             <div class="form-floating mb-3">
-                <input type="number" name="price" class="form-control" id="floatingInput" value="<%=data.price %>" placeholder="">
+                <input type="number" name="price" class="form-control" id="floatingInput" value="<%=data.price %>" placeholder="Price">
                 <label for="floatingInput">Price</label>
               </div>
     
               <div class="form-floating mb-3">
-                <input type="number" name="quantity" class="form-control" id="floatingInput" value="<%=data.quantity %>" placeholder="">
+                <input type="number" name="quantity" class="form-control" id="floatingInput" value="<%=data.quantity %>" placeholder="Quantity">
                 <label for="floatingInput">Quantity</label>
               </div>
     
                <div class="form-floating mb-3">
-                <input type="text" name="description" class="form-control" id="floatingInput" value="<%=data.description %>" placeholder="">
+                <input type="text" name="description" class="form-control" id="floatingInput" value="<%=data.description %>" placeholder="Description">
                 <label for="floatingInput">Description</label>
             </div>
     
              <div class="form-floating mb-3">
-                <input type="text" name="imgurl" class="form-control" id="floatingInput" value="<%=data.imgurl %>" placeholder="">
+                <input type="text" name="imgurl" class="form-control" id="floatingInput" value="<%=data.imgurl %>" placeholder="Image URL">
                 <label for="floatingInput">Image Url</label>
             </div>
     
