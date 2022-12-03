@@ -1,0 +1,25 @@
+            {{#if succs}}
+                <div class="alert alert-info">{{succs}}</div>
+            {{/if}}
+
+            {{#if error}}
+                <div class="alert alert-danger">{{error}}</div>
+            {{/if}}
+
+<div class="container">
+    <div class="card">
+  <img class="card-img-top" src="{{imgPath}}" height="250px" alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title">Welcome : {{username}}</h4>
+    <p class="card-text"></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Email : {{email}}</li>
+  </ul>
+  <div class="card-block">
+    <a href="/downloadsinglefile" class="card-link btn btn-info">Download Profile</a>
+    <a href="/changepassword" class="card-link btn btn-warning">Change Password</a>
+    <a href="/logout" class="card-link btn btn-danger">Logout</a>
+  </div>
+</div>
+</div>
