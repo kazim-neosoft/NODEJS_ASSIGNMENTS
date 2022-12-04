@@ -1,3 +1,4 @@
+{{> navbar}}            
             {{#if succs}}
                 <div class="alert alert-info">{{succs}}</div>
             {{/if}}
@@ -5,21 +6,31 @@
             {{#if error}}
                 <div class="alert alert-danger">{{error}}</div>
             {{/if}}
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-4">
 
-<div class="container">
-    <div class="card">
-  <img class="card-img-top" src="{{imgPath}}" height="250px" alt="Card image cap">
-  <div class="card-block">
-    <h4 class="card-title">Welcome : {{username}}</h4>
-    <p class="card-text"></p>
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body text-center">
+            <div class="mt-3 mb-4">
+              <img src="{{imgPath}}"
+                class="rounded-circle img-fluid" style="width: 100px;" />
+            </div>
+            <h4 class="mb-2">{{username}}</h4>
+            <p class="text-muted mb-4">@Programmer <span class="mx-2">|</span> <a
+                href="{{email}}">{{email}}</a></p>
+            <a href="/downloadsinglefile" class="btn btn-primary btn-rounded btn-lg">
+              Download Profile
+            </a>
+            <a href="/changepassword" class="btn btn-warning btn-rounded ">Change Password</a><br>
+            <a href="/logout" class="btn btn-danger btn-rounded ">Logout</a>
+            <div class="d-flex justify-content-between text-center mt-5 mb-2">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Email : {{email}}</li>
-  </ul>
-  <div class="card-block">
-    <a href="/downloadsinglefile" class="card-link btn btn-info">Download Profile</a>
-    <a href="/changepassword" class="card-link btn btn-warning">Change Password</a>
-    <a href="/logout" class="card-link btn btn-danger">Logout</a>
-  </div>
-</div>
-</div>
+</section>
