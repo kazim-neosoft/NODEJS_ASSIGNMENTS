@@ -1,32 +1,11 @@
 const bcrypt=require('bcrypt');// to hash the data
 const crypto=require('crypto');// to encode the data
-const nodemailer=require('nodemailer');// to sending mail
-const hbs = require('nodemailer-express-handlebars');
 const tokenModel = require('../models/Token');
 const userModelSchema = require('../models/User');
 const upload = require('./fileUploadController');
+const { activateAccountMail, resetPasswordMail } = require('./mailController');
 const uploadSingle=upload.single('profileupload');
 require('dotenv').config();
-
-
-let transporter=nodemailer.createTransport({
-    service:"gmail",
-    port:587,
-    secure:false,
-    auth:{
-        user:process.env.EMAIL,
-        pass:process.env.EMAIL_PASSWORD
-    }
-});//Nodemailer transporter
-
-transporter.use('compile', hbs(
-    {
-        viewEngine:"nodemailer-express-handlebars",
-        viewPath:"emailViews/emailTemplates/",
-        
-    }
-));//settingup email templates
-
 
 const defaultPage=(req,res)=>{
     if(req.session.username){
@@ -44,55 +23,46 @@ const registrationRender=(req,res)=>{
 }
 
 const registerUser=async(req,res)=>{
-    if(req.session.username){
-        return res.redirect("/dashboard")
-    }
-    uploadSingle(req,res,async(err)=>{
-        if(err)
-        {
-            return res.render('registration',{error:err.message})
+
+    try {
+
+        if(req.session.username){
+            return res.redirect("/dashboard")
         }
-        else{
-            let {email,username,password}=req.body;
-            let hashPassword=await bcrypt.hash(password,10);//hashing password with 10 salt round
-            let user = await userModelSchema.findOne({username});//getting user document in user variable
-
-            if(!user){
-                userData=new userModelSchema({email,username,password:hashPassword,image:req.file.filename});
-                userData.save();
-
-                let mailOptions={
-                    from:process.env.EMAIL,
-                    to:email,
-                    subject:"Activate your account",
-                    template:'activation',
-                    context:{
-                        username:username,
-                        id:userData._id }
-                };//setting up a Activae accound maul
-
-                transporter.sendMail(mailOptions,(err,info)=>{
-                    if(err){ console.log(err)}
-                    else{
-                        res.redirect("/login")
-                    }
-                });//sending mail
-
+        uploadSingle(req,res,async(err)=>{
+            if(err)
+            {
+                return res.render('registration',{error:err.message})
             }
             else{
-                res.render("registration", { error: "User Already Registered" });
+                let {email,username,password}=req.body;
+                let hashPassword=await bcrypt.hash(password,10);//hashing password with 10 salt round
+                let user = await userModelSchema.findOne({username});//getting user document in user variable
+    
+                if(!user){
+
+                    userData=new userModelSchema({email,username,password:hashPassword,image:req.file.filename});
+                    userData.save();
+                    activateAccountMail(userData);//activation mail send
+                    return res.render("registration", { succs: "Activation Email Sended to your mail" });
+                }
+                else{
+                    return res.render("registration", { error: "User Already Registered" });
+                }
             }
-        }
-    })
+        })
+        
+    } catch (error) {
+        return res.render("registration", { error: "User Already Registered" });
+    }
 }
 
 const activateAccount=async(req,res)=>{
     const {id}=req.params;
     try {
         await userModelSchema.findOneAndUpdate({_id:id},{$set:{status:1}});//if user click on activate account link status set to 1 in DB
-        let data = await userModelSchema.findOne({_id:id});
-        req.session.username=data.username;//setting up username session and storing a username
-        res.redirect('/dashboard');
+        // let data = await userModelSchema.findOne({_id:id});
+        res.redirect('/');
     } catch (error) {
         console.log(error);
         res.redirect("/login");
@@ -141,7 +111,7 @@ const dashboard=async(req,res)=>{
     let username=req.session.username;//checking if username session is there or not
     if(username){
         let data=await userModelSchema.findOne({username});
-        return res.render("dashboard",{username:username,imgPath:data.image,email:data.email});
+        return res.render("dashboard",{username:username,imgPath:data.image,email:data.email,status:data.status});
     }
     else{
         return res.redirect("/login");
@@ -153,9 +123,10 @@ const dashboard=async(req,res)=>{
     }    
 }
 
-const logout=(req,res)=>{
-    req.session.destroy();//when logout called session will be destroyed
-    return res.redirect("/");
+const logout=(req,res)=>{//when logout called session will be destroyed
+    req.session.destroy((err) => {
+        res.redirect('/') // will always fire after session is destroyed
+      })
 }
 
 const downloadSingleFile=async(req,res)=>{
@@ -217,24 +188,8 @@ const forgotPasswordHandler=async(req,res)=>{
         });
         token.save();
 
-        let mailOptions={
-            from:process.env.EMAIL,
-            to:email,
-            subject:"Reset Password Link",
-            template:'resetpassword',
-            context:{
-                token:userToken,
-                id:user._id,
-                username:user.username
-            }
-        }
-
-        transporter.sendMail(mailOptions,(err,info)=>{
-            if(err){ console.log(err)}
-            else{
-                return res.render("forgotpassword",{succs:"Reset Password Link send to your email"});
-            }
-        })
+        resetPasswordMail(userToken,user);//reset password email
+        return res.render("forgotpassword",{succs:"Please Check Your Email"});
     }
     else{
         return res.render("forgotpassword",{error:"Email is not exists"});

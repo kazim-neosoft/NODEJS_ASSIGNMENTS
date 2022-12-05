@@ -10,7 +10,7 @@ let transporter=nodemailer.createTransport({
         user:process.env.EMAIL,
         pass:process.env.EMAIL_PASSWORD
     }
-});
+});//Nodemailer Tunneling
 
 transporter.use('compile', hbs(
     {
@@ -18,6 +18,58 @@ transporter.use('compile', hbs(
         viewPath:"emailViews/emailTemplates/",
         
     }
-));
+));//Setting up Email Template 
 
-module.exports=transporter;
+// Reset Password Mail Handler
+const activateAccountMail=(data)=>{
+
+    const {_id,email,username}=data;
+    let mailOptions={
+        from:process.env.EMAIL,
+        to:email,
+        subject:"Activate your account",
+        template:'activation',
+        context:{
+            username:username,
+            id:_id }
+    };
+
+    //Email Sending
+    transporter.sendMail(mailOptions,(err,info)=>{
+        if(err){ console.log(err)}
+        else{
+            res.redirect("/login")
+        }
+    });
+};
+
+// Reset Password Mail Handler
+const resetPasswordMail=(token,data)=>{
+
+    const {_id,email,username}=data;
+    let mailOptions={
+        from:process.env.EMAIL,
+        to:email,
+        subject:"Reset Password Link",
+        template:'resetpassword',
+        context:{
+            token:token,
+            id:_id,
+            username:username
+        }
+    }
+    
+    //Email Sending
+    transporter.sendMail(mailOptions,(err,info)=>{
+        if(err){ console.log(err)}
+        else{
+            return res.render("forgotpassword",{succs:"Reset Password Link send to your email"});
+        }
+    })
+};
+
+
+module.exports={
+    activateAccountMail,
+    resetPasswordMail
+};
