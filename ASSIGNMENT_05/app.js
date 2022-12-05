@@ -23,7 +23,6 @@ mongoose.connect(MONGODB_URI)
 .then(res=>{console.log(`DB CONNECTED`);})
 .catch(err=>{console.log(err.message);});//establishing connection with mongoDB
 
-
 app.use("/",userRoutes);
 app.use("*",(req,res)=>{
     res.status(404).render("404")

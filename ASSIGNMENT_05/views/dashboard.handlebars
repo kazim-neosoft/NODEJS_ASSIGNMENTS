@@ -5,15 +5,13 @@
 
             {{#if error}}
                 <div class="alert alert-danger">{{error}}</div>
-            {{/if}}
-
-            {{!-- {{#if (eq status 0)}}  {{! works! }}
-                  <div class="alert alert-danger">Please Activate Your account</div>
-            {{/if}} --}}
-
-            
+            {{/if}}   
             
 <section class="vh-100" style="background-color: #eee;">
+      {{#if status}}
+        {{else}}
+            <div class="alert alert-danger">Please Activate Your account by clicking on activation link on your mail</div>
+        {{/if}}
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-12 col-xl-4">
