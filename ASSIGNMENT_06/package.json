@@ -1,0 +1,30 @@
+{
+  "name": "assignment_06",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^1.2.0",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "fast-xml-parser": "^4.0.11",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.7.4",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.8.0",
+    "nodemailer-express-handlebars": "^5.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
+}

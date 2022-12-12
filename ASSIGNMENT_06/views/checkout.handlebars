@@ -1,0 +1,39 @@
+{{> authorizedUserNavbar}}
+
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://img.freepik.com/premium-vector/pizza-logo-design-vector-template_260747-62.jpg?w=60" alt="" width="72" height="72">
+        <h2>Checkout form</h2>
+        <p class="lead">Don't Share your credit card number and OTP</p>
+    </div>
+
+
+<div class="form-outline form-white mb-4">
+<form name="checkout" action="/chekouthandle" method="post">
+  <label class="form-label" for="typeText">Card Number</label>
+  <input
+    type="number"
+    id="typeText"
+    class="form-control form-control-lg"
+    size="17"
+    minlength="19"
+    maxlength="19"
+    pattern="[0-9]{16}"
+    title="Credit card number is required and must be 16 digits"
+    required
+  />
+
+<h4>Total: ₹ {{amount}}/- Tax included</h4>
+
+<button type="submit" class="btn btn-info btn-block btn-lg">
+  <div class="d-flex justify-content-between">
+    <span>Checkout <i class="bi bi-caret-right-fill"></i></span>
+  </div>
+</div>
+
+</button>
+</div>
+
+</form>
+
+

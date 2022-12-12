@@ -1,0 +1,18 @@
+{{> authorizedUserNavbar}}
+<div class="container">
+
+            {{#if succs}}
+                <div class="alert alert-info m-3">{{succs}}</div>
+                <a href="/menu"><input type="button" class="btn btn-info" value="Go an order some more"></a>
+
+                <h4 class="text-center">Thank You 🙂🙂</h4>
+            {{/if}}
+
+            {{#if error}}
+                <div class="alert alert-danger m-3">{{error}}</div>
+
+                <h4 class="text-center">OOPS 🙁🙁</h4>
+            {{/if}}
+
+        
+</div>
